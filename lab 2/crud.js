@@ -34,6 +34,7 @@ const main = async () => {
 
     switch (Number(choice)) {
       case 1:
+        await addtoCart({ id: 101, name: "Mobile", price: 27000, qty: 3 });
         console.log("Add to cart 🛒");
         break;
       case 2:
