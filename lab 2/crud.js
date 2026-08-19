@@ -3,7 +3,7 @@ import { stdin, stdout } from "process";
 import { writeFile, readFile } from "fs/promises";
 import { setTimeout } from "timers/promises";
 
-const FILE = "product.json";
+const FILE = new URL("./products.json", import.meta.url);
 
 const saveCart = async (cart) => {
   await writeFile(FILE, JSON.stringify(cart, null, 2));
@@ -17,6 +17,16 @@ const addtoCart = async (item) => {
   const products = await getCart();
   products.push(item);
   await saveCart(products);
+};
+
+const showCart = () => {
+  console.log("Show Cart 🛒");
+};
+const updateCart = () => {
+  console.log("Update Cart ⏫");
+};
+const deletefromCart = () => {
+  console.log("Delete from Cart ❌");
 };
 
 const main = async () => {
@@ -34,17 +44,17 @@ const main = async () => {
 
     switch (Number(choice)) {
       case 1:
-        await addtoCart({ id: 101, name: "Mobile", price: 27000, qty: 3 });
-        console.log("Add to cart 🛒");
+        const Details = await cin.question("Enter Id,Name,Price,qty: ");
+        console.log(Details);
         break;
       case 2:
-        console.log("Show cart 💻");
+        showCart();
         break;
       case 3:
-        console.log("Remove item ❌");
+        deletefromCart();
         break;
       case 4:
-        console.log("Update quantity ➕");
+        updateCart();
         break;
       case 5:
         console.log("Checking out... Thank you for shopping! 😄");
