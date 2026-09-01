@@ -1,7 +1,8 @@
 import http from "http";
 
 const server = http.createServer((req, res) => {
-  res.write("<h1>Hello Client</h1>");
+  res.write("<h1>You Have Access to this Server</h1>");
+  res.write("<h3>Akshat Kumar</h3>");
   res.end();
 });
 

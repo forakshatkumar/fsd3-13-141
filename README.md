@@ -53,6 +53,23 @@ This lab focuses on working with **modular JavaScript** and organizing code acro
 * `one.js` – First JavaScript module/script.
 * `two.js` – Second script that works with concepts from `one.js`.
 * `Note.txt` – Notes and instructions related to the lab.
+* `Crl + c`  - Stops the Server
+
+## NPM - Node Package Manager
+
+Used to Install, run, uninstall any program/project and package
+-npm install <packageName>
+-npm uninstall <packageName>
+
+to use npm, project must be npm project
+to create npm project we can use
+
+- npm init -y
+- it creates a package.json file automatically package.json holds all the information related to install packages from npm
+- it also creates a folder node_modules automatically
+-  node_modules holds the package/library files
+- generally we ignore the node_modules by .gitignore
+
 
 ## 🛠️ Technologies Used
 
