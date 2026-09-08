@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>मटका | The Indian Water Pot</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --cream: #f8f0e3;
+      --cream-light: #fffaf2;
+      --dark: #2d1a12;
+      --brown: #5d3525;
+      --terracotta: #b85c38;
+      --terracotta-dark: #843b24;
+      --orange: #dc7647;
+      --sand: #ddc3a1;
+      --green: #667052;
+      --muted: #826d5d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* subtle paper texture */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      z-index: 1000;
+      background-image:
+        radial-gradient(circle, #24130b 0 0.8px, transparent 0.9px);
+      background-size: 18px 18px;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      z-index: 100;
+      top: 20px;
+      left: 5%;
+      width: 90%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      border-radius: 18px;
+      border: 1px solid rgba(82, 46, 28, 0.12);
+      background: rgba(255, 250, 240, 0.82);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 40px rgba(80, 46, 28, 0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo-symbol {
+      width: 37px;
+      height: 37px;
+      background: var(--terracotta);
+      color: white;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: "Playfair Display", serif;
+    }
+
+    .logo span {
+      color: var(--terracotta);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--terracotta);
+    }
+
+    .nav-btn {
+      padding: 11px 20px;
+      background: var(--dark);
+      color: white;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding: 140px 8% 80px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "जल";
+      position: absolute;
+      right: -40px;
+      top: 100px;
+      font-family: serif;
+      font-size: 260px;
+      color: rgba(122, 62, 37, 0.035);
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--terracotta-dark);
+      background: #f0dbc5;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(52px, 7vw, 92px);
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 em {
+      color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin-top: 28px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 25px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: white;
+      box-shadow: 0 12px 25px rgba(184, 92, 56, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: var(--terracotta-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--dark);
+      border: 1px solid rgba(61, 36, 24, 0.3);
+    }
+
+    .btn-outline:hover {
+      background: var(--dark);
+      color: white;
+    }
+
+    /* MATKA ART */
+
+    .hero-art {
+      position: relative;
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sun {
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      background: #ebc994;
+      opacity: 0.55;
+    }
+
+    .arch {
+      position: absolute;
+      width: 390px;
+      height: 490px;
+      border-radius: 210px 210px 40px 40px;
+      border: 2px solid rgba(115, 64, 41, 0.13);
+    }
+
+    .matka {
+      width: 305px;
+      height: 365px;
+      position: relative;
+      z-index: 3;
+      margin-top: 70px;
+      border-radius: 42% 42% 48% 48% / 30% 30% 65% 65%;
+      background:
+        radial-gradient(circle at 35% 24%, rgba(255,255,255,0.22), transparent 14%),
+        linear-gradient(90deg, #8e4328 0%, #c4673f 25%, #dc8050 50%, #b35534 77%, #77341f 100%);
+      box-shadow:
+        inset -28px 0 35px rgba(69, 25, 11, 0.18),
+        inset 24px 0 35px rgba(255, 208, 170, 0.12),
+        0 40px 50px rgba(70, 37, 22, 0.22);
+      animation: floatPot 5s ease-in-out infinite;
+    }
+
+    @keyframes floatPot {
+      0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    .neck {
+      position: absolute;
+      width: 137px;
+      height: 95px;
+      top: -58px;
+      left: 84px;
+      border-radius: 28px 28px 15px 15px;
+      background: linear-gradient(
+        90deg,
+        #813a24,
+        #c3643e,
+        #d67c4b,
+        #9a472c
+      );
+      box-shadow: inset -10px 0 15px rgba(60,20,10,.15);
+    }
+
+    .mouth {
+      position: absolute;
+      width: 165px;
+      height: 38px;
+      top: -76px;
+      left: 70px;
+      border-radius: 50%;
+      background: linear-gradient(#7b321f 0 45%, #c4653e 46%);
+      border: 7px solid #a34e30;
+      box-shadow: inset 0 7px 9px rgba(35,14,7,.35);
+    }
+
+    .band {
+      position: absolute;
+      width: 92%;
+      height: 46px;
+      top: 88px;
+      left: 4%;
+      border-top: 4px solid #f1c59a;
+      border-bottom: 4px solid #f1c59a;
+    }
+
+    .pattern {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    .diamond {
+      width: 17px;
+      height: 17px;
+      background: #573020;
+      transform: rotate(45deg);
+      border: 2px solid #e8b584;
+    }
+
+    .pot-line {
+      position: absolute;
+      width: 70%;
+      left: 15%;
+      height: 3px;
+      background: rgba(88, 40, 24, 0.7);
+      border-radius: 50%;
+    }
+
+    .line-1 {
+      bottom: 75px;
+    }
+
+    .line-2 {
+      bottom: 60px;
+    }
+
+    .ground-shadow {
+      position: absolute;
+      bottom: 48px;
+      width: 280px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(67, 34, 20, 0.15);
+      filter: blur(9px);
+    }
+
+    /* SECTION COMMON */
+
+    section {
+      padding: 105px 8%;
+    }
+
+    .section-title {
+      max-width: 720px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section-title small {
+      text-transform: uppercase;
+      color: var(--terracotta);
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .section-title h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 5vw, 58px);
+      margin: 10px 0 15px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* STORY */
+
+    .story {
+      background: var(--dark);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story::before {
+      content: "ॐ";
+      position: absolute;
+      right: 7%;
+      bottom: -60px;
+      font-size: 230px;
+      opacity: 0.03;
+      font-family: serif;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-number {
+      font-family: "Playfair Display", serif;
+      font-size: 150px;
+      color: var(--terracotta);
+      line-height: 0.8;
+    }
+
+    .story-left p {
+      margin-top: 30px;
+      color: #d7c9be;
+      line-height: 1.7;
+    }
+
+    .story-right h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 52px;
+      margin-bottom: 25px;
+    }
+
+    .story-right h2 em {
+      color: var(--orange);
+    }
+
+    .story-right p {
+      color: #cdbdb2;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    /* BENEFITS */
+
+    .benefits {
+      background: var(--cream-light);
+    }
+
+    .benefit-grid {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      min-height: 265px;
+      padding: 32px;
+      border: 1px solid #e6d2ba;
+      background: #fbf4ea;
+      border-radius: 26px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(85, 47, 28, 0.1);
+    }
+
+    .card-number {
+      font-family: "Playfair Display", serif;
+      color: #d6aa88;
+      font-size: 55px;
+      position: absolute;
+      right: 22px;
+      top: 10px;
+    }
+
+    .card-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 18px;
+      background: #ead0b3;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      margin-bottom: 25px;
+    }
+
+    .card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* QUOTE */
+
+    .quote {
+      padding: 120px 8%;
+      text-align: center;
+      background:
+        linear-gradient(rgba(116, 54, 31, 0.91), rgba(83, 36, 21, 0.94)),
+        repeating-linear-gradient(
+          45deg,
+          #b56745,
+          #b56745 10px,
+          #ac5c3c 10px,
+          #ac5c3c 20px
+        );
+      color: white;
+    }
+
+    .quote .symbol {
+      font-size: 48px;
+      opacity: 0.75;
+    }
+
+    .quote h2 {
+      max-width: 950px;
+      margin: 18px auto;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .quote p {
+      color: #f2d8c7;
+    }
+
+    /* PROCESS */
+
+    .process-grid {
+      margin-top: 70px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+    }
+
+    .process-grid::before {
+      content: "";
+      position: absolute;
+      height: 1px;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      background: #cda784;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      padding: 0 20px;
+    }
+
+    .step-circle {
+      width: 57px;
+      height: 57px;
+      border-radius: 50%;
+      margin: auto auto 22px;
+      background: var(--terracotta);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      border: 6px solid var(--cream);
+    }
+
+    .step h3 {
+      font-family: "Playfair Display", serif;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* PRODUCT */
+
+    .product {
+      margin: 20px 8% 100px;
+      min-height: 450px;
+      background: var(--green);
+      border-radius: 40px;
+      padding: 65px;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      right: -100px;
+      top: -120px;
+      border: 60px solid rgba(255,255,255,0.05);
+    }
+
+    .product h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 52px;
+      margin-bottom: 20px;
+    }
+
+    .product p {
+      color: #e0e5d8;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      max-width: 570px;
+    }
+
+    .product .btn {
+      background: #fff6e8;
+      color: var(--dark);
+    }
+
+    .mini-pot-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .mini-pot {
+      width: 210px;
+      height: 250px;
+      border-radius: 42% 42% 48% 48% / 30% 30% 65% 65%;
+      position: relative;
+      background: linear-gradient(
+        90deg,
+        #803820,
+        #c3623b,
+        #de8050,
+        #9d452a
+      );
+      box-shadow: 0 30px 45px rgba(0,0,0,.22);
+    }
+
+    .mini-pot::before {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 65px;
+      background: #b85c38;
+      top: -48px;
+      left: 60px;
+      border-radius: 20px 20px 5px 5px;
+    }
+
+    .mini-pot::after {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 22px;
+      top: -58px;
+      left: 50px;
+      border-radius: 50%;
+      background: #692b1a;
+      border: 7px solid #a74c2d;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 55px 8%;
+      background: #21130d;
+      color: #bba99e;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      padding-bottom: 35px;
+    }
+
+    .footer-logo {
+      color: white;
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+    }
+
+    .footer-logo span {
+      color: var(--orange);
+    }
+
+    footer p {
+      font-size: 13px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 25px;
+      font-size: 12px;
+    }
+
+    /* REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 950px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 150px;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-art {
+        min-height: 500px;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .benefit-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 45px;
+      }
+
+      .process-grid::before {
+        display: none;
+      }
+
+      .product {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .product p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        left: 4%;
+        width: 92%;
+        padding: 0 18px;
+      }
+
+      .nav-btn {
+        display: none;
+      }
+
+      section {
+        padding: 80px 6%;
+      }
+
+      .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-art {
+        transform: scale(.82);
+        margin: -30px 0;
+      }
+
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product {
+        margin: 20px 5% 70px;
+        padding: 50px 25px;
+      }
+
+      .product h2 {
+        font-size: 38px;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-symbol">म</div>
+      <div>MITTI<span>KA</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#benefits">Why Matka?</a></li>
+      <li><a href="#craft">The Craft</a></li>
+    </ul>
+
+    <a href="#discover" class="nav-btn">
+      Discover Matka
+    </a>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        ✦ Born from Indian Earth
+      </div>
+
+      <h1>
+        The art of<br>
+        drinking <em>water.</em>
+      </h1>
+
+      <p>
+        Before refrigerators, filters and machines, there was the
+        <strong>Matka</strong> — an Indian earthen pot that naturally
+        keeps water cool, fresh and deeply connected to the earth.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#story">
+          <button class="btn btn-primary">
+            Discover the tradition
+          </button>
+        </a>
+
+        <a href="#benefits">
+          <button class="btn btn-outline">
+            Why Matka? ↓
+          </button>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- CSS MATKA -->
+
+    <div class="hero-art">
+
+      <div class="sun"></div>
+      <div class="arch"></div>
+
+      <div class="ground-shadow"></div>
+
+      <div class="matka">
+
+        <div class="neck"></div>
+        <div class="mouth"></div>
+
+        <div class="band">
+          <div class="pattern">
+            <span class="diamond"></span>
+            <span class="diamond"></span>
+            <span class="diamond"></span>
+            <span class="diamond"></span>
+            <span class="diamond"></span>
+          </div>
+        </div>
+
+        <div class="pot-line line-1"></div>
+        <div class="pot-line line-2"></div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- STORY -->
+
+  <section class="story" id="story">
+
+    <div class="story-grid reveal">
+
+      <div class="story-left">
+
+        <div class="story-number">∞</div>
+
+        <p>
+          For generations, Indian homes have relied on clay pots
+          to store drinking water. The practice is simple,
+          sustainable and beautifully effective.
+        </p>
+
+      </div>
+
+
+      <div class="story-right">
+
+        <h2>
+          Crafted by earth.<br>
+          Perfected by <em>time.</em>
+        </h2>
+
+        <p>
+          A matka is more than a container. Its porous clay body
+          allows tiny amounts of water to slowly evaporate from
+          the surface.
+        </p>
+
+        <p>
+          This natural evaporation draws heat away from the water
+          inside, keeping it pleasantly cool without electricity.
+          No compressor. No plastic. No complicated technology.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BENEFITS -->
+
+  <section class="benefits" id="benefits">
+
+    <div class="section-title reveal">
+
+      <small>Simple. Natural. Timeless.</small>
+
+      <h2>
+        Why generations chose the Matka
+      </h2>
+
+      <p>
+        Sometimes, traditional solutions remain brilliant
+        precisely because of their simplicity.
+      </p>
+
+    </div>
+
+
+    <div class="benefit-grid">
+
+      <div class="card reveal">
+
+        <span class="card-number">01</span>
+
+        <div class="card-icon">💧</div>
+
+        <h3>Natural Cooling</h3>
+
+        <p>
+          Clay's porous surface enables natural evaporative cooling,
+          giving water a pleasantly cool temperature without
+          refrigeration.
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <span class="card-number">02</span>
+
+        <div class="card-icon">🌿</div>
+
+        <h3>Earth Friendly</h3>
+
+        <p>
+          Made primarily from natural clay, traditional matkas
+          require no electricity to cool your drinking water.
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <span class="card-number">03</span>
+
+        <div class="card-icon">🪴</div>
+
+        <h3>Made from Earth</h3>
+
+        <p>
+          Each pot begins as raw clay shaped by skilled hands and
+          transformed through fire into something useful and beautiful.
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <span class="card-number">04</span>
+
+        <div class="card-icon">☀️</div>
+
+        <h3>Perfect for Summer</h3>
+
+        <p>
+          The subtle cooling effect makes matka water especially
+          refreshing during India's warm summer months.
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <span class="card-number">05</span>
+
+        <div class="card-icon">🤲</div>
+
+        <h3>Handcrafted</h3>
+
+        <p>
+          Traditional pottery supports generations of artisans who
+          preserve techniques passed through families and communities.
+        </p>
+
+      </div>
+
+
+      <div class="card reveal">
+
+        <span class="card-number">06</span>
+
+        <div class="card-icon">भारत</div>
+
+        <h3>Indian Heritage</h3>
+
+        <p>
+          The matka carries a quiet connection to Indian kitchens,
+          courtyards, villages and memories spanning generations.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- QUOTE -->
+
+  <section class="quote">
+
+    <div class="reveal">
+
+      <div class="symbol">❋</div>
+
+      <h2>
+        “The simplest things often carry the wisdom of generations.”
+      </h2>
+
+      <p>
+        मिट्टी की खुशबू • ठंडा पानी • भारतीय परंपरा
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- CRAFT PROCESS -->
+
+  <section id="craft">
+
+    <div class="section-title reveal">
+
+      <small>The Potter's Journey</small>
+
+      <h2>
+        From मिट्टी to Matka
+      </h2>
+
+      <p>
+        A humble piece of clay passes through skilled hands,
+        patience and fire before becoming part of a home.
+      </p>
+
+    </div>
+
+
+    <div class="process-grid">
+
+      <div class="step reveal">
+        <div class="step-circle">01</div>
+        <h3>Clay</h3>
+        <p>
+          Natural earth is collected, cleaned and prepared.
+        </p>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-circle">02</div>
+        <h3>Shape</h3>
+        <p>
+          The potter forms the clay carefully on a spinning wheel.
+        </p>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-circle">03</div>
+        <h3>Sun</h3>
+        <p>
+          The shaped pot rests and slowly dries under the sun.
+        </p>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-circle">04</div>
+        <h3>Fire</h3>
+        <p>
+          The dried vessel is fired until the clay becomes strong.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCT / CTA -->
+
+  <section class="product" id="discover">
+
+    <div class="reveal">
+
+      <p style="
+        text-transform:uppercase;
+        letter-spacing:2px;
+        font-size:12px;
+        font-weight:700;
+      ">
+        Rediscover tradition
+      </p>
+
+      <h2>
+        Bring the Matka<br>
+        back home.
+      </h2>
+
+      <p>
+        A quiet reminder that good design existed long before
+        modern technology — beautiful, functional and made
+        directly from the earth.
+      </p>
+
+      <button class="btn" onclick="showMessage()">
+        Experience the tradition →
+      </button>
+
+    </div>
+
+
+    <div class="mini-pot-container reveal">
+
+      <div class="mini-pot"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-logo">
+        मिट्टी<span>का</span>
+      </div>
+
+      <p>
+        Celebrating Indian craft, culture and timeless design.
+      </p>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 Mittika
+      </span>
+
+      <span>
+        Made with मिट्टी & ♥ in India
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    // Scroll reveal animation
+
+    const elements = document.querySelectorAll(".reveal");
+
+    const reveal = () => {
+
+      elements.forEach((element) => {
+
+        const top = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (top < windowHeight - 80) {
+          element.classList.add("active");
+        }
+
+      });
+
+    };
+
+    window.addEventListener("scroll", reveal);
+
+    reveal();
+
+
+    // CTA interaction
+
+    function showMessage() {
+
+      alert(
+        "मिट्टी की खुशबू, ठंडे पानी का स्वाद. 🇮🇳\n\nSome traditions never need replacing."
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
