@@ -14,8 +14,8 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.end("DELETE Request");
   } else {
-    res.statusCode = 200;
-    res.end("DELETE Request");
+    res.statusCode = 404;
+    res.end("Request Not Found");
   }
 });
 
