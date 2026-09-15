@@ -1,44 +1,57 @@
-## Lab 2 – CRUD Operations
+# FS(file system)-Node JS's Library
+ 
+  node library that doesnt communicate with browser it  directly interacts with client os
+## Major task of FS module
 
-This lab focuses on data handling and basic **CRUD operations**.
+- Reading and writing files
+  - readFile()
+  - writeFile()
+  - APPENDFILE()
 
-CRUD stands for:
+- Directory management
+  - mkdir()
+  - rmdir() - depricated
+  - rm()
+  - readdir()
 
-* `C` – Create
+- Metadata / information
+  - stat()
+  - lstat()
+  - fstat()
 
-* `R` – Read
+- Watching for changes
+  - watch()
+  - watchFile()
+  - unwatchFile()
 
-* `U` – Update
+- Streaming Large files
+  - createReadStream()
+  - createWriteStream()
 
-* `D` – Delete
+- File Operations
+  - rename()
+  - truncte()
+  - unlink()
+  - link()
+  - syslink()
 
-* `crud.js` – Contains the logic and functions for performing CRUD operations.
 
-* `products.json` – A JSON file that works as a mock database or data source.
 
-## JSON
+## CRUD Operation
 
-JSON stands for **JavaScript Object Notation**.
+Create/Insert , Read/Retrieve , Update , Delete 
 
-It is used to store and exchange data in a simple format.
+# Item 
+(id,name,price,qty)
 
-Example:
+## Operations
+1. Add to Cart
+2. Show Cart
+3. Remove item from Cart
+4. Update Quantity
+5. checkout
+    NOTE : all items will be stored in hdd, so after termination of program we can retrieve cart details ;
 
-```json
-{
-  "name": "Laptop",
-  "price": 50000
-}
-```
-
-## CRUD Operations
-
-* Create – Add new data.
-
-* Read – Display or retrieve existing data.
-
-* Update – Modify existing data.
-
-* Delete – Remove data.
-
-In this lab, `products.json` is used to store the data and `crud.js` is used to perform CRUD operations on it.
+## Required files   
+- crud.js - it contains all the methods and entry point 
+- products.json - it contains the product details in array form
