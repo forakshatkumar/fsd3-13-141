@@ -1,24 +1,33 @@
 import http from "http";
-
 const server = http.createServer((req, res) => {
   if (req.url === "/" && req.method === "GET") {
     res.statusCode = 200;
-    res.end("GET Request");
+    res.end("Get request");
   } else if (req.url === "/" && req.method === "POST") {
+    // console.log("Request:", req);
+    let body = ''
+    req.on('data',(chunk)=>{
+      body += chunk
+    })
+    req.on("end",()=>{
+      const product = JSON.parse(body);
+      console.log("recieved product: ", product);
+    })
     res.statusCode = 200;
-    res.end("POST Request");
-  } else if (req.url === "/" && req.method === "PUT") {
+    res.end("Post request");
+  } 
+  
+  else if (req.url === "/" && req.method === "PUT") {
     res.statusCode = 200;
-    res.end("PUT Request");
+    res.end("Put request");
   } else if (req.url === "/" && req.method === "DELETE") {
     res.statusCode = 200;
-    res.end("DELETE Request");
+    res.end("Delete request");
   } else {
     res.statusCode = 404;
-    res.end("Request Not Found");
+    res.end("request not found ");
   }
 });
-
-server.listen(4444, () => {
-  console.log("Prg6 is running...");
+server.listen(5000, () => {
+  console.log("prg6 is running.....");
 });
