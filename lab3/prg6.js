@@ -5,19 +5,17 @@ const server = http.createServer((req, res) => {
     res.end("Get request");
   } else if (req.url === "/" && req.method === "POST") {
     // console.log("Request:", req);
-    let body = ''
-    req.on('data',(chunk)=>{
-      body += chunk
-    })
-    req.on("end",()=>{
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+    });
+    req.on("end", () => {
       const product = JSON.parse(body);
       console.log("recieved product: ", product);
-    })
-    res.statusCode = 200;
-    res.end("Post request");
-  } 
-  
-  else if (req.url === "/" && req.method === "PUT") {
+      res.statusCode = 201;
+      res.end(JSON.stringify({ msg: "product added", product }));
+    });
+  } else if (req.url === "/" && req.method === "PUT") {
     res.statusCode = 200;
     res.end("Put request");
   } else if (req.url === "/" && req.method === "DELETE") {
