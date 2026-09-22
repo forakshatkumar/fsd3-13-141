@@ -18,6 +18,13 @@ export const getAllProducts = () => {
   return products;
 };
 
-export const addproducts = () =>{
-    return 
+export const addProducts = (item) => {
+  item.id = nextId;
+  nextId++;
+  products.push(item);
+  return item;
+};
+
+export const deleteProducts = (pid) =>{
+    
 }

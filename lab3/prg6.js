@@ -1,5 +1,6 @@
 import http from "http";
 import { getAllProducts } from "./products.js";
+import { addProducts } from "./products.js";
 
 const server = http.createServer((req, res) => {
   if (req.url === "/api/v1/products" && req.method === "GET") {
@@ -23,7 +24,7 @@ const server = http.createServer((req, res) => {
       const product = JSON.parse(body);
       console.log("recieved product: ", product);
       res.statusCode = 201;
-      res.end(JSON.stringify({ msg: "product added", product }));
+      res.end(JSON.stringify({ msg: "product recieved", data: item }));
     });
   } else if (req.url.startsWith("/products/") && req.method === "PUT") {
     const productID = req.url.split("/").pop();
@@ -39,7 +40,10 @@ const server = http.createServer((req, res) => {
       res.statusCode = 200;
       res.end(JSON.stringify({ msg: "product Updated", product }));
     });
-  } else if (req.url === "/" && req.method === "DELETE") {
+  } else if (
+    req.url.startsWith("/api/v1/products/") &&
+    req.method === "DELETE"
+  ) {
     res.statusCode = 200;
     res.end("Delete request");
   } else {
