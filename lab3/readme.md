@@ -101,3 +101,12 @@ the content type and status code can be send back to client by two ways
  6. `application/auth` -> for tokens
     The Headers can be set by the res object at server side by two ways
  7. 
+
+ ## For GET
+ - No parameters passed to the server when we receive all items
+ ## For post
+ - To add record, we pass the value from body section in ``JSON`` format of (Echo)API Tester
+ ## For DELETE
+ - To delete any product, we pass parameter that is id of the product from ``url``
+ ## For UPDATE(Put/Patch)
+ - To Update any product, we pass id from the ``url`` and data to update from body.
