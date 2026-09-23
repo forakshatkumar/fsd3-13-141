@@ -18,7 +18,7 @@ export const getAllProducts = () => {
   return products;
 };
 
-export const addProducts = (item) => {
+export const addProduct = (item) => {
   item.id = nextId;
   nextId++;
   products.push(item);
