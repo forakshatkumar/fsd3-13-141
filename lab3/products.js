@@ -25,6 +25,15 @@ export const addProducts = (item) => {
   return item;
 };
 
-export const deleteProducts = (pid) =>{
-    
+export const deleteProduct = (pid) => {
+  const item = products.findIndex((prd) => prd.id === pid);
+  if (item == -1) return false;
+  products.splice(item, 1);
+  console.log("products remaining :", products);
+  return true;
+};
+export const updateProduct = (pid) =>{
+  
 }
+// create a function to update any product given pid call this fucntion in prg6
+//  and verify its working by echoAPI
