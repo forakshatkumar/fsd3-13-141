@@ -31,6 +31,7 @@ export const deleteProduct = (pid) => {
   products.splice(item, 1);
   console.log("products remaining :", products);
   return true;
+  nextId--;
 };
 // create a function to update any product given pid call this fucntion in prg6
 //  and verify its working by echoAPI
