@@ -1,10 +1,17 @@
-import express from 'express'
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "node:url";
 
 const app = express();
-app.get("/", (req,res)=>{
-    res.send("<h1>Hello</h1>");
+const fileName = fileURLToPath(import.meta.url);
+const dirName = path.dirname(fileName);
+
+app.use(express.static(path.join(dirName, "public")));
+
+app.get("/",(req, res) => {
+  res.status(404).send("Page Not Found");
 });
 
-app.listen(3333,()=>{
-    console.log("prg3 server is running..");
-})
+app.listen(3333, () => {
+  console.log("prg3 server is running..");
+});
