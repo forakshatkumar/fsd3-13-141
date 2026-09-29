@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-black">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumina Pro | The Ultimate Smartphone Experience</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              surface: "#111111",
+              surface2: "#1c1c1e",
+              accent: "#2997ff",
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+              "hero-glow":
+                "conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)",
+            },
+            letterSpacing: {
+              tightest: "-.04em",
+              tighter: "-.02em",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #000;
+        color: #f5f5f7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Apple-style typography classes */
+      .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Advanced Scroll Reveal Animations */
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(60px);
+        transition:
+          opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition:
+          opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-blur {
+        opacity: 0;
+        filter: blur(10px);
+        transition:
+          opacity 1.2s ease,
+          filter 1.2s ease;
+      }
+
+      .in-view {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+
+      .delay-100 {
+        transition-delay: 100ms;
+      }
+      .delay-200 {
+        transition-delay: 200ms;
+      }
+      .delay-300 {
+        transition-delay: 300ms;
+      }
+
+      /* Sleek CSS Phone Render */
+      .lumina-phone {
+        width: 320px;
+        height: 660px;
+        border-radius: 55px;
+        background: #000;
+        padding: 12px;
+        box-shadow:
+          inset 0 0 0 2px #333,
+          /* Inner rim */ inset 0 0 0 5px #111,
+          /* Bezel gap */ 0 0 0 2px #444,
+          /* Outer metal frame */ 0 30px 60px -10px rgba(0, 0, 0, 0.9),
+          /* Drop shadow */ 0 0 120px rgba(42, 138, 246, 0.15); /* Ambient glow */
+        position: relative;
+        z-index: 10;
+      }
+
+      .lumina-screen {
+        width: 100%;
+        height: 100%;
+        border-radius: 43px;
+        background: url("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2400&auto=format&fit=crop")
+          center/cover;
+        overflow: hidden;
+        position: relative;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Dynamic Island */
+      .dynamic-island {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 110px;
+        height: 32px;
+        background-color: #000;
+        border-radius: 20px;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 10px;
+        box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+      }
+      .island-camera {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #111;
+        box-shadow:
+          inset 0 0 4px rgba(255, 255, 255, 0.2),
+          inset 0 0 2px #0a1038;
+      }
+
+      /* Abstract UI overlay on screen */
+      .screen-ui {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.8)
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 30px 20px;
+      }
+      .time-widget {
+        position: absolute;
+        top: 70px;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        font-size: 80px;
+        font-weight: 200;
+        color: rgba(255, 255, 255, 0.9);
+        letter-spacing: -3px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Ambient Hero Animation */
+      @keyframes rotate-glow {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      .hero-aura {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 800px;
+        height: 800px;
+        background: conic-gradient(
+          from 180deg at 50% 50%,
+          #2a8af620 0deg,
+          #a853ba20 180deg,
+          #e92a6720 360deg
+        );
+        filter: blur(100px);
+        border-radius: 50%;
+        animation: rotate-glow 20s linear infinite;
+        z-index: 0;
+      }
+
+      /* Modern Bento Grid Cards */
+      .bento-card {
+        background: #111111;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        position: relative;
+        transition: border-color 0.3s ease;
+      }
+      .bento-card:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .bento-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          800px circle at var(--mouse-x) var(--mouse-y),
+          rgba(255, 255, 255, 0.06),
+          transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .bento-card:hover .bento-glow {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-accent selection:text-white">
+    <nav
+      class="fixed w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-14 sm:h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0 flex items-center cursor-pointer group">
+            <i
+              class="ph-fill ph-planet text-2xl text-white group-hover:text-accent transition-colors"
+            ></i>
+            <span class="ml-2 text-xl font-bold tracking-tight text-white"
+              >Lumina</span
+            >
+          </div>
+
+          <!-- Desktop Links -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#overview"
+              class="text-xs font-medium text-gray-300 hover:text-white transition-colors uppercase tracking-widest"
+              >Overview</a
+            >
+            <a
+              href="#design"
+              class="text-xs font-medium text-gray-300 hover:text-white transition-colors uppercase tracking-widest"
+              >Design</a
+            >
+            <a
+              href="#innovation"
+              class="text-xs font-medium text-gray-300 hover:text-white transition-colors uppercase tracking-widest"
+              >Innovation</a
+            >
+            <a
+              href="#specs"
+              class="text-xs font-medium text-gray-300 hover:text-white transition-colors uppercase tracking-widest"
+              >Specs</a
+            >
+          </div>
+
+          <!-- CTA -->
+          <div>
+            <a
+              href="#preorder"
+              class="inline-flex items-center justify-center px-5 py-1.5 border border-transparent text-xs font-semibold rounded-full text-black bg-white hover:bg-gray-200 transition-all duration-300"
+            >
+              Pre-order
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section
+        id="hero"
+        class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-[100vh] flex flex-col items-center justify-center overflow-hidden"
+      >
+        <div class="hero-aura"></div>
+
+        <div
+          class="relative z-10 w-full max-w-7xl mx-auto px-6 text-center flex flex-col items-center"
+        >
+          <h2
+            class="text-accent font-semibold tracking-widest uppercase text-xs sm:text-sm mb-6 reveal-up"
+          >
+            Lumina Pro
+          </h2>
+
+          <h1
+            class="text-6xl sm:text-8xl lg:text-[140px] font-bold tracking-tightest leading-none mb-8 reveal-up delay-100 text-white"
+          >
+            Titanium.
+          </h1>
+          <h1
+            class="text-5xl sm:text-7xl lg:text-[100px] font-bold tracking-tightest leading-none mb-12 reveal-up delay-200 text-transparent bg-clip-text bg-gradient-to-r from-gray-500 via-gray-300 to-gray-600 pb-4"
+          >
+            So strong. So light.
+          </h1>
+
+          <!-- CSS Rendered Phone -->
+          <div class="mt-8 mb-16 reveal-scale delay-300 relative group">
+            <div
+              class="lumina-phone transition-transform duration-700 ease-out group-hover:scale-[1.02] group-hover:-translate-y-2"
+            >
+              <div class="lumina-screen">
+                <div class="dynamic-island">
+                  <div class="island-camera"></div>
+                </div>
+                <div class="time-widget font-light">09:41</div>
+                <div class="screen-ui">
+                  <!-- Mock UI bottom icons -->
+                  <div class="flex justify-between w-full px-4 pb-2">
+                    <div
+                      class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-xl"
+                    ></div>
+                    <div
+                      class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-xl"
+                    ></div>
+                    <div
+                      class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-xl"
+                    ></div>
+                    <div
+                      class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-xl"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col sm:flex-row gap-6 justify-center items-center reveal-up delay-300"
+          >
+            <a
+              href="#preorder"
+              class="px-8 py-4 rounded-full text-black bg-white font-semibold text-lg hover:bg-gray-200 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+            >
+              Buy Now
+            </a>
+            <a
+              href="#design"
+              class="px-8 py-4 rounded-full text-white font-semibold text-lg hover:text-accent transition-all duration-300 flex items-center group w-full sm:w-auto"
+            >
+              Learn more
+              <i
+                class="ph-bold ph-caret-right ml-2 group-hover:translate-x-1 transition-transform"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="design" class="py-32 bg-black relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto text-center">
+            <p
+              class="text-2xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-gray-400 reveal-up"
+            >
+              Forged in aerospace-grade titanium. <br class="hidden sm:block" />
+              <span class="text-white"
+                >Lumina Pro is the lightest and strongest Pro model ever
+                created.</span
+              >
+              <br class="hidden sm:block" />
+              Notice the difference the moment you pick it up.
+            </p>
+          </div>
+
+          <!-- Abstract Detail Image -->
+          <div
+            class="mt-24 rounded-[40px] overflow-hidden relative h-[50vh] lg:h-[70vh] w-full reveal-scale bg-surface2"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1592890278983-18616401d670?q=80&w=2000&auto=format&fit=crop"
+              alt="Titanium Texture"
+              class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"
+            ></div>
+            <div
+              class="absolute bottom-10 left-10 lg:bottom-16 lg:left-16 z-10"
+            >
+              <h3 class="text-3xl lg:text-5xl font-bold text-white mb-2">
+                Beautifully rugged.
+              </h3>
+              <p class="text-lg text-gray-400">Precision-machined chassis.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="innovation" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <h2
+            class="text-4xl sm:text-6xl font-bold tracking-tighter mb-16 reveal-up"
+          >
+            Explore the <br />frontier of innovation.
+          </h2>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[400px]"
+          >
+            <!-- Feature 1: Camera (Spans 2 cols on LG) -->
+            <div
+              class="bento-card lg:col-span-2 p-10 flex flex-col justify-between group reveal-up"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div class="relative z-10">
+                <i
+                  class="ph ph-aperture text-5xl text-gray-400 mb-6 group-hover:text-white transition-colors duration-500"
+                ></i>
+                <h3 class="text-3xl font-bold text-white mb-3">
+                  Pro Camera System.
+                </h3>
+                <p class="text-gray-400 text-lg max-w-md">
+                  Our most advanced 48MP main sensor ever. Capture the world in
+                  unimaginable detail, even in the darkest environments.
+                </p>
+              </div>
+              <!-- Abstract lens graphic -->
+              <div
+                class="absolute bottom-0 right-0 w-64 h-64 translate-x-1/4 translate-y-1/4 rounded-full border-[10px] border-surface2 flex items-center justify-center opacity-50 group-hover:scale-110 transition-transform duration-700"
+              >
+                <div
+                  class="w-48 h-48 rounded-full border-[8px] border-gray-800 flex items-center justify-center"
+                >
+                  <div
+                    class="w-32 h-32 rounded-full bg-gradient-to-br from-gray-700 to-black shadow-inner"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 2: Processor -->
+            <div
+              class="bento-card p-10 flex flex-col justify-between group reveal-up delay-100"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div class="relative z-10">
+                <h3 class="text-3xl font-bold text-white mb-3">A18 Pro.</h3>
+                <p class="text-gray-400 text-lg">
+                  A monster chip for mind-bending performance.
+                </p>
+              </div>
+              <div
+                class="relative z-10 self-center mt-auto group-hover:-translate-y-4 transition-transform duration-500"
+              >
+                <i class="ph-duotone ph-cpu text-8xl text-accent"></i>
+              </div>
+            </div>
+
+            <!-- Feature 3: Battery -->
+            <div
+              class="bento-card p-10 flex flex-col justify-between group reveal-up"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div class="relative z-10">
+                <h3 class="text-3xl font-bold text-white mb-3">
+                  All-day battery.
+                </h3>
+                <p class="text-gray-400 text-lg">
+                  Up to 29 hours of video playback. Unplug and go further.
+                </p>
+              </div>
+              <div
+                class="relative z-10 flex items-end justify-center h-full pb-4"
+              >
+                <div
+                  class="w-24 h-12 border-4 border-gray-600 rounded-xl p-1 relative"
+                >
+                  <div class="w-[80%] h-full bg-green-500 rounded-sm"></div>
+                  <div
+                    class="absolute -right-3 top-1/2 -translate-y-1/2 w-2 h-4 bg-gray-600 rounded-r-md"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 4: Display (Spans 2 cols on MD/LG) -->
+            <div
+              class="bento-card md:col-span-2 p-10 flex flex-col justify-between group reveal-up delay-100 overflow-hidden"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div class="relative z-10 flex flex-col md:flex-row h-full">
+                <div class="md:w-1/2 z-10">
+                  <h3 class="text-3xl font-bold text-white mb-3">
+                    Super Retina XDR.
+                  </h3>
+                  <p class="text-gray-400 text-lg">
+                    Up to 2000 nits peak brightness. Everything looks brilliant.
+                  </p>
+                </div>
+                <div
+                  class="md:w-1/2 h-full relative mt-8 md:mt-0 flex justify-center items-center"
+                >
+                  <div
+                    class="w-[120%] h-40 bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 rounded-3xl blur-[40px] opacity-40 group-hover:opacity-70 transition-opacity duration-700"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="specs" class="py-32 bg-black border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-up"
+          >
+            <h2 class="text-4xl sm:text-5xl font-bold tracking-tighter">
+              The details.
+            </h2>
+            <a
+              href="#"
+              class="text-accent hover:underline mt-4 md:mt-0 flex items-center"
+            >
+              View full technical specifications
+              <i class="ph-bold ph-caret-right ml-1"></i>
+            </a>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+            <!-- Spec 1 -->
+            <div class="reveal-up">
+              <div
+                class="w-12 h-12 bg-surface2 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="ph ph-arrows-out text-xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-semibold text-white mb-2">
+                6.7" or 6.1"
+              </h4>
+              <p class="text-gray-400">
+                Super Retina XDR display featuring ProMotion technology
+              </p>
+            </div>
+
+            <!-- Spec 2 -->
+            <div class="reveal-up delay-100">
+              <div
+                class="w-12 h-12 bg-surface2 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="ph ph-video-camera text-xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-semibold text-white mb-2">Pro Camera</h4>
+              <p class="text-gray-400">
+                48MP Main | Ultra Wide | Telephoto<br />Super-high-resolution
+                photos
+              </p>
+            </div>
+
+            <!-- Spec 3 -->
+            <div class="reveal-up delay-200">
+              <div
+                class="w-12 h-12 bg-surface2 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="ph ph-shield-check text-xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-semibold text-white mb-2">Titanium</h4>
+              <p class="text-gray-400">
+                Aerospace-grade design with Ceramic Shield front
+              </p>
+            </div>
+
+            <!-- Spec 4 -->
+            <div class="reveal-up delay-300">
+              <div
+                class="w-12 h-12 bg-surface2 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="ph ph-usb text-xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-semibold text-white mb-2">USB-C</h4>
+              <p class="text-gray-400">
+                Supports USB 3 for up to 20x faster transfers
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="preorder" class="py-32 bg-surface2 relative overflow-hidden">
+        <!-- Background Accent -->
+        <div
+          class="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/10 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3"
+        ></div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2
+            class="text-5xl sm:text-7xl font-bold tracking-tightest mb-6 reveal-up"
+          >
+            Lumina Pro
+          </h2>
+          <p class="text-2xl text-gray-400 mb-10 reveal-up delay-100">
+            Pro. Beyond.
+          </p>
+          <div class="text-xl font-medium text-white mb-10 reveal-up delay-200">
+            From $999 or $41.62/mo. for 24 mo.*
+          </div>
+
+          <div
+            class="flex flex-col sm:flex-row justify-center gap-4 reveal-up delay-300"
+          >
+            <button
+              class="px-10 py-5 rounded-full text-black bg-white text-lg font-bold hover:bg-gray-200 transition-all duration-300"
+            >
+              Buy Now
+            </button>
+            <button
+              class="px-10 py-5 rounded-full text-white bg-surface border border-white/20 text-lg font-bold hover:bg-white/10 transition-all duration-300"
+            >
+              View Pricing
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-black pt-16 pb-8 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Breadcrumbs -->
+        <div class="text-xs text-gray-500 mb-10 pb-4 border-b border-white/10">
+          <span>Lumina</span> <span class="mx-2">></span>
+          <span>Smartphones</span> <span class="mx-2">></span>
+          <span class="text-gray-300">Lumina Pro</span>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">
+              Shop and Learn
+            </h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors">Store</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Lumina Pro</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Lumina standard</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Accessories</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">Services</h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Lumina Music</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Lumina Cloud+</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Lumina Care</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Financing</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">Account</h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Manage Your ID</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Lumina Store Account</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >iCloud.com</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">About Lumina</h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Newsroom</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Environment</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 border-t border-white/10 text-xs text-gray-500"
+        >
+          <div>Copyright &copy; 2026 Lumina Inc. All rights reserved.</div>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <span class="border-l border-gray-700"></span>
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Use</a
+            >
+            <span class="border-l border-gray-700"></span>
+            <a href="#" class="hover:text-white transition-colors"
+              >Sales and Refunds</a
+            >
+          </div>
+          <div>United States</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Intersection Observer for robust scroll animations
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              // Stop observing once animated to keep it visible
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Select all elements with reveal classes
+        const revealElements = document.querySelectorAll(
+          ".reveal-up, .reveal-scale, .reveal-blur",
+        );
+        revealElements.forEach((el) => observer.observe(el));
+
+        // Navbar backdrop blur on scroll
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 20) {
+            navbar.classList.add(
+              "bg-black/70",
+              "backdrop-blur-xl",
+              "border-white/5",
+            );
+            navbar.classList.remove("bg-transparent", "border-transparent");
+          } else {
+            // Make completely transparent at the very top
+            navbar.classList.add("bg-transparent", "border-transparent");
+            navbar.classList.remove(
+              "bg-black/70",
+              "backdrop-blur-xl",
+              "border-white/5",
+            );
+          }
+        });
+
+        // Trigger initial scroll check for navbar
+        window.dispatchEvent(new Event("scroll"));
+      });
+
+      // Mouse move effect for Bento Cards (Glow effect following cursor)
+      function handleMouseMove(e, card) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      }
+    </script>
+  </body>
+</html>

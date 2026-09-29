@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-black">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Lumina | Crafting the Future</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              surface: "#111111",
+              surface2: "#1c1c1e",
+              accent: "#2997ff",
+              eco: "#34c759",
+            },
+            letterSpacing: {
+              tightest: "-.04em",
+              tighter: "-.02em",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #000;
+        color: #f5f5f7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Typography & Gradients */
+      .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Abstract CSS Orbs */
+      .orb-1 {
+        position: absolute;
+        width: 60vw;
+        height: 60vw;
+        max-width: 800px;
+        max-height: 800px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(41, 151, 255, 0.15) 0%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        filter: blur(80px);
+        animation: float 20s ease-in-out infinite alternate;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .orb-eco {
+        position: absolute;
+        width: 50vw;
+        height: 50vw;
+        max-width: 600px;
+        max-height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(52, 199, 89, 0.1) 0%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        filter: blur(100px);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(-5%, 10%) scale(1.1);
+        }
+      }
+
+      /* Advanced Scroll Reveal Animations */
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(60px);
+        transition:
+          opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition:
+          opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-fade {
+        opacity: 0;
+        transition: opacity 1.5s ease;
+      }
+
+      .in-view {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .delay-100 {
+        transition-delay: 100ms;
+      }
+      .delay-200 {
+        transition-delay: 200ms;
+      }
+      .delay-300 {
+        transition-delay: 300ms;
+      }
+
+      /* Modern Bento Grid Cards */
+      .bento-card {
+        background: #111111;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        position: relative;
+        transition: border-color 0.3s ease;
+      }
+      .bento-card:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .bento-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          600px circle at var(--mouse-x) var(--mouse-y),
+          rgba(255, 255, 255, 0.08),
+          transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .bento-card:hover .bento-glow {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-accent selection:text-white">
+    <nav
+      class="fixed w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-14 sm:h-16">
+          <!-- Logo -->
+          <a
+            href="index.html"
+            class="flex-shrink-0 flex items-center cursor-pointer group"
+          >
+            <i
+              class="ph-fill ph-planet text-2xl text-white group-hover:text-accent transition-colors"
+            ></i>
+            <span class="ml-2 text-xl font-bold tracking-tight text-white"
+              >Lumina</span
+            >
+          </a>
+
+          <!-- Desktop Links -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="index.html"
+              class="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-widest"
+              >Products</a
+            >
+            <a
+              href="#"
+              class="text-xs font-medium text-white transition-colors uppercase tracking-widest"
+              >About Us</a
+            >
+            <a
+              href="#sustainability"
+              class="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-widest"
+              >Environment</a
+            >
+          </div>
+
+          <!-- CTA -->
+          <div>
+            <a
+              href="index.html#preorder"
+              class="inline-flex items-center justify-center px-5 py-1.5 border border-transparent text-xs font-semibold rounded-full text-black bg-white hover:bg-gray-200 transition-all duration-300"
+            >
+              Shop Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section
+        id="hero"
+        class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 min-h-[90vh] flex flex-col items-center justify-center overflow-hidden"
+      >
+        <!-- Ambient Orb -->
+        <div class="orb-1 top-[-10%] right-[-10%]"></div>
+
+        <div
+          class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center flex flex-col items-center"
+        >
+          <h2
+            class="text-accent font-semibold tracking-widest uppercase text-xs sm:text-sm mb-6 reveal-up"
+          >
+            Our Mission
+          </h2>
+
+          <h1
+            class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tightest leading-tight mb-10 reveal-up delay-100 text-white"
+          >
+            We don't just build technology.
+          </h1>
+          <h1
+            class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tightest leading-tight mb-12 reveal-up delay-200 text-transparent bg-clip-text bg-gradient-to-r from-gray-500 via-gray-300 to-gray-600 pb-4"
+          >
+            We craft extensions of human capability.
+          </h1>
+
+          <p
+            class="max-w-2xl text-lg sm:text-xl text-gray-400 font-light leading-relaxed reveal-fade delay-300"
+          >
+            Founded on the belief that tools should disappear into the
+            experience, Lumina exists to push the boundaries of design,
+            engineering, and human-computer interaction. We obsess over the
+            details so you can focus on the extraordinary.
+          </p>
+        </div>
+      </section>
+
+      <section id="philosophy" class="py-32 bg-black relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="mb-20 text-center md:text-left reveal-up">
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-6">
+              Design Philosophy.
+            </h2>
+            <p class="text-xl text-gray-400 max-w-2xl">
+              Simplicity is the ultimate sophistication. Every curve, every
+              material, and every line of code is debated, refined, and
+              perfected.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[350px]">
+            <!-- Card 1: Craftsmanship (Spans 2 cols on MD) -->
+            <div
+              class="bento-card md:col-span-2 p-10 flex flex-col justify-between group reveal-up"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div
+                class="relative z-10 flex flex-col h-full justify-between w-full md:w-2/3"
+              >
+                <div>
+                  <i
+                    class="ph-duotone ph-diamonds-four text-4xl text-gray-400 mb-6 group-hover:text-white transition-colors duration-500"
+                  ></i>
+                  <h3 class="text-3xl font-bold text-white mb-3">
+                    Obsessive Craftsmanship.
+                  </h3>
+                  <p class="text-gray-400 text-lg">
+                    We source only the finest materials—aerospace-grade
+                    titanium, custom-formulated glass, and precision-milled
+                    aluminum to ensure longevity and unparalleled feel.
+                  </p>
+                </div>
+              </div>
+              <!-- Abstract Graphic -->
+              <div
+                class="absolute bottom-0 right-0 w-64 h-64 translate-x-1/4 translate-y-1/4 rounded-full border border-gray-700 flex items-center justify-center opacity-30 group-hover:opacity-60 transition-all duration-700"
+              >
+                <div
+                  class="w-48 h-48 rounded-full border border-gray-600"
+                ></div>
+                <div
+                  class="w-32 h-32 rounded-full border border-gray-500 absolute"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Card 2: Ergonomics -->
+            <div
+              class="bento-card p-10 flex flex-col justify-between group reveal-up delay-100"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div class="relative z-10">
+                <i
+                  class="ph-duotone ph-hand-tap text-4xl text-gray-400 mb-6 group-hover:text-white transition-colors"
+                ></i>
+                <h3 class="text-2xl font-bold text-white mb-3">
+                  Form follows feeling.
+                </h3>
+                <p class="text-gray-400">
+                  Designed to balance perfectly in the palm of your hand.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3: Software Integration -->
+            <div
+              class="bento-card p-10 flex flex-col justify-between group reveal-up"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div class="relative z-10">
+                <i
+                  class="ph-duotone ph-code text-4xl text-gray-400 mb-6 group-hover:text-white transition-colors"
+                ></i>
+                <h3 class="text-2xl font-bold text-white mb-3">
+                  Hardware meets Software.
+                </h3>
+                <p class="text-gray-400">
+                  A seamless symphony. We build both, so they work as one.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 4: Precision (Spans 2 cols on MD) -->
+            <div
+              class="bento-card md:col-span-2 p-10 flex flex-col justify-between group reveal-up delay-100 overflow-hidden"
+              onmousemove="handleMouseMove(event, this)"
+            >
+              <div class="bento-glow"></div>
+              <div class="relative z-10 flex flex-col md:flex-row h-full">
+                <div class="md:w-1/2 z-10">
+                  <i
+                    class="ph-duotone ph-ruler text-4xl text-gray-400 mb-6 group-hover:text-white transition-colors"
+                  ></i>
+                  <h3 class="text-3xl font-bold text-white mb-3">
+                    Precision Engineering.
+                  </h3>
+                  <p class="text-gray-400 text-lg">
+                    Machined to tolerances measured in microns. No gaps. No
+                    compromises. Just pure monolithic design.
+                  </p>
+                </div>
+                <div
+                  class="md:w-1/2 h-full relative mt-8 md:mt-0 flex justify-center items-center"
+                >
+                  <!-- Abstract lines representing precision -->
+                  <div
+                    class="flex space-x-1 opacity-20 group-hover:opacity-50 transition-opacity duration-500"
+                  >
+                    <div class="w-px h-32 bg-white"></div>
+                    <div class="w-px h-24 bg-white mt-4"></div>
+                    <div class="w-px h-40 bg-white -mt-4"></div>
+                    <div class="w-px h-20 bg-white mt-8"></div>
+                    <div class="w-px h-32 bg-white"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sustainability" class="py-32 relative overflow-hidden">
+        <div class="orb-eco bottom-[-20%] left-[-10%]"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div
+            class="bg-surface2/50 backdrop-blur-2xl rounded-[40px] border border-white/5 p-10 sm:p-20 reveal-scale"
+          >
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+              <div class="lg:w-1/2">
+                <div class="flex items-center space-x-3 mb-6 reveal-up">
+                  <i class="ph-fill ph-leaf text-eco text-2xl"></i>
+                  <span
+                    class="text-eco font-semibold tracking-widest uppercase text-sm"
+                    >Our Environment</span
+                  >
+                </div>
+                <h2
+                  class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter mb-8 text-white reveal-up delay-100"
+                >
+                  Innovation <br />without exhaustion.
+                </h2>
+                <p
+                  class="text-lg text-gray-400 mb-8 reveal-up delay-200 leading-relaxed"
+                >
+                  We believe the best products in the world shouldn't cost the
+                  earth. By 2030, every Lumina device, from manufacturing to
+                  packaging to daily use, will have a net-zero climate impact.
+                </p>
+                <ul class="space-y-4 reveal-up delay-300">
+                  <li class="flex items-start">
+                    <i class="ph-bold ph-check-circle text-eco mt-1 mr-3"></i>
+                    <span class="text-gray-300"
+                      >100% recycled rare earth elements in all magnets.</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ph-bold ph-check-circle text-eco mt-1 mr-3"></i>
+                    <span class="text-gray-300"
+                      >Eliminated all plastics in our packaging.</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ph-bold ph-check-circle text-eco mt-1 mr-3"></i>
+                    <span class="text-gray-300"
+                      >Facilities powered by 100% renewable energy.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="lg:w-1/2 flex justify-center reveal-fade delay-300">
+                <!-- Abstract CSS Eco Graphic -->
+                <div
+                  class="relative w-64 h-64 rounded-full border border-eco/30 flex items-center justify-center bg-eco/5 backdrop-blur-md"
+                >
+                  <div
+                    class="absolute w-48 h-48 rounded-full border border-eco/20 flex items-center justify-center animate-[spin_10s_linear_infinite]"
+                  >
+                    <div
+                      class="w-4 h-4 bg-eco rounded-full absolute -top-2"
+                    ></div>
+                  </div>
+                  <i class="ph-duotone ph-recycle text-6xl text-eco/80"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="vision"
+        class="py-40 bg-black relative border-t border-white/5"
+      >
+        <div class="max-w-4xl mx-auto px-6 text-center">
+          <h2
+            class="text-3xl sm:text-5xl font-bold tracking-tighter mb-8 reveal-up text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500"
+          >
+            The next decade of human connection starts here.
+          </h2>
+          <p class="text-xl text-gray-400 mb-12 reveal-up delay-100 font-light">
+            Join us as we continue to redefine what's possible.
+          </p>
+          <div class="reveal-up delay-200">
+            <a
+              href="index.html"
+              class="inline-flex items-center px-8 py-4 rounded-full text-black bg-white font-semibold text-lg hover:bg-gray-200 transition-all duration-300"
+            >
+              Explore Lumina Pro
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-black pt-16 pb-8 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">
+              Shop and Learn
+            </h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="index.html" class="hover:text-white transition-colors"
+                  >Store</a
+                >
+              </li>
+              <li>
+                <a href="index.html" class="hover:text-white transition-colors"
+                  >Lumina Pro</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Accessories</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">Services</h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Lumina Care</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Financing</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">About Lumina</h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Newsroom</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#sustainability"
+                  class="hover:text-white transition-colors"
+                  >Environment</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-sm font-semibold mb-4">Contact</h4>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Support</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Media Inquiries</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 border-t border-white/10 text-xs text-gray-500"
+        >
+          <div>Copyright &copy; 2026 Lumina Inc. All rights reserved.</div>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <span class="border-l border-gray-700"></span>
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Use</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Intersection Observer for robust scroll animations
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              // Stop observing once animated
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Select all elements with reveal classes
+        const revealElements = document.querySelectorAll(
+          ".reveal-up, .reveal-scale, .reveal-fade",
+        );
+        revealElements.forEach((el) => observer.observe(el));
+
+        // Navbar backdrop blur on scroll
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 20) {
+            navbar.classList.add(
+              "bg-black/70",
+              "backdrop-blur-xl",
+              "border-white/5",
+            );
+            navbar.classList.remove("bg-transparent", "border-transparent");
+          } else {
+            navbar.classList.add("bg-transparent", "border-transparent");
+            navbar.classList.remove(
+              "bg-black/70",
+              "backdrop-blur-xl",
+              "border-white/5",
+            );
+          }
+        });
+
+        // Trigger initial scroll check
+        window.dispatchEvent(new Event("scroll"));
+      });
+
+      // Mouse move effect for Bento Cards (Glow effect following cursor)
+      function handleMouseMove(e, card) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      }
+    </script>
+  </body>
+</html>
