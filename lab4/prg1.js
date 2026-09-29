@@ -20,7 +20,8 @@ const products = [
   },
 ];
 app.get("/products", (req, res) => {
-  res.status(200).send(products);
+  // res.status(200).send(products);
+  res.status(200).json(products);
 });
 
 app.use((req, res) => {
