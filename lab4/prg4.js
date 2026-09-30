@@ -12,13 +12,23 @@ app.get("/api/products", (req, res) => {
   const modiProducts = products.map(
     ({ reviews, description, ...rest }) => rest,
   );
-  res
-    .status(200)
-    .json({
-      msg: "Product Found!",
-      count: modiProducts.length,
-      data: modiProducts,
-    });
+  res.status(200).json({
+    msg: "Product Found!",
+    count: modiProducts.length,
+    data: modiProducts,
+  });
+});
+
+app.get("/api/products/:id", (req, res) => {
+  const { id } = req.params;
+  const p = products.find((item) => item.id === Number(id));
+  if (p) {
+    res.status(200).json({ status: true, data: p });
+  } else {
+    res
+      .status(404)
+      .json({ status: false, msg: `product not found with id: ${id}` });
+  }
 });
 
 app.use((req, res) => {
