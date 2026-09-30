@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Feedback | BrightPath Tuition</title>
+    <title>Registration | BrightPath Tuition</title>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -380,10 +380,10 @@
           ><i class="fa-solid fa-graduation-cap"></i> BrightPath Tuition</a
         >
         <ul class="nav-links">
-          <li><a class="" href="index.html">Registration</a></li>
+          <li><a class="active" href="index.html">Registration</a></li>
           <li><a class="" href="login.html">Login</a></li>
           <li><a class="" href="courses.html">Courses</a></li>
-          <li><a class="active" href="feedback.html">Feedback</a></li>
+          <li><a class="" href="feedback.html">Feedback</a></li>
           <li><a class="" href="price-details.html">Price Details</a></li>
         </ul>
       </div>
@@ -391,11 +391,11 @@
 
     <main>
       <section class="hero">
-        <span class="eyebrow">Student Feedback</span>
-        <h1>Help us make learning better</h1>
+        <span class="eyebrow">Student Registration</span>
+        <h1>Start learning with BrightPath</h1>
         <p>
-          Your feedback helps us improve our teaching quality, course materials
-          and student experience.
+          Register for our tuition classes and choose the program that matches
+          your academic goals.
         </p>
       </section>
 
@@ -403,41 +403,63 @@
         <form
           onsubmit="
             event.preventDefault();
-            alert('Thank you for your feedback!');
+            alert('Registration submitted successfully!');
           "
         >
           <div class="form-grid">
             <div class="field">
-              <label for="fName">Student Name</label>
+              <label for="name">Student Name</label>
               <input
-                id="fName"
+                id="name"
                 type="text"
-                placeholder="Enter your name"
+                placeholder="Enter full name"
                 required
               />
             </div>
             <div class="field">
-              <label for="fEmail">Email Address</label>
+              <label for="parent">Parent/Guardian Name</label>
               <input
-                id="fEmail"
+                id="parent"
+                type="text"
+                placeholder="Enter parent name"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input
+                id="email"
                 type="email"
                 placeholder="student@example.com"
                 required
               />
             </div>
-            <div class="field full">
-              <label>Overall Rating</label>
-              <div class="rating" aria-label="Five star rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input
+                id="phone"
+                type="tel"
+                placeholder="+91 98765 43210"
+                required
+              />
             </div>
-            <div class="field full">
-              <label for="subject">Course / Subject</label>
-              <select id="subject">
+            <div class="field">
+              <label for="class">Class / Grade</label>
+              <select id="class" required>
+                <option value="">Select class</option>
+                <option>Class 6</option>
+                <option>Class 7</option>
+                <option>Class 8</option>
+                <option>Class 9</option>
+                <option>Class 10</option>
+                <option>Class 11</option>
+                <option>Class 12</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="course">Preferred Course</label>
+              <select id="course" required>
+                <option value="">Select course</option>
                 <option>Mathematics Mastery</option>
                 <option>Science Excellence</option>
                 <option>English Communication</option>
@@ -445,17 +467,19 @@
               </select>
             </div>
             <div class="field full">
-              <label for="feedback">Your Feedback</label>
+              <label for="address">Address</label>
               <textarea
-                id="feedback"
-                placeholder="Tell us about your experience..."
-                required
+                id="address"
+                placeholder="Enter your address"
               ></textarea>
             </div>
           </div>
           <div class="actions">
             <button class="btn" type="submit">
-              <i class="fa-solid fa-paper-plane"></i> Submit Feedback
+              <i class="fa-solid fa-user-plus"></i> Register Now
+            </button>
+            <button class="btn secondary" type="reset">
+              <i class="fa-solid fa-rotate-left"></i> Reset
             </button>
           </div>
         </form>
