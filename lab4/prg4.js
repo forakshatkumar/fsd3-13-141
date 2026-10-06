@@ -51,6 +51,26 @@ app.get("/api/products/query", (req, res) => {
   res.send("Product Search page");
 });
 
+app.get("/api/products/:id/review/:reviewId", (req, res) => {
+  const { id, reviewId } = req.params;
+
+  const product = products.find((item) => item.id === Number(id));
+
+  if (!product) {
+    return res
+      .status(404)
+      .json({ data: [], msg: "No product matched your search" });
+  }
+  const review = product.reviews.find((r) => r.id === Number(reviewId));
+
+  if (!review) {
+    return res
+      .status(404)
+      .json({ data: [], msg: "No review matched your search" });
+  }
+  res.status(200).json({ data: review });
+});
+
 app.get("/api/products/:id", (req, res) => {
   const { id } = req.params;
   const p = products.find((item) => item.id === Number(id));
